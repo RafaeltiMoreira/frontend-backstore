@@ -21,13 +21,13 @@ export default function Home() {
     }
   }
 
-  async function handleSale(product, quantity) {
-    const apiUrl = Api.product.sale(product._id);
+  async function handleSale(backstore, quantity) {
+    const apiUrl = Api.backstore.sale(backstore._id);
     const response = await Api.buildApiPatchRequest(apiUrl, { quantity });
 
     if (response.ok) {
-      const updatedProduct = await response.json();
-      setStore(store.map(p => p._id === product._id ? updatedProduct : p));
+      const updatedBackstore = await response.json();
+      setStore(store.map(p => p._id === backstore._id ? updatedBackstore : p));
       toast.success("Venda realizada com sucesso!");
     } else {
       const body = await response.json();
