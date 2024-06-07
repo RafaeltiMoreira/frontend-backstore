@@ -2,7 +2,7 @@ import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Api = {
-  baseUrl: 'https://backend-para-integrar-com-frontend.onrender.com/',
+  baseUrl: 'https://api-restful-backstore.onrender.com/',
 
   backstore: {
     endpoint: function () {
