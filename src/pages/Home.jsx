@@ -8,7 +8,7 @@ export default function Home() {
   const [store, setStore] = useState([])
 
   async function fetchData() {
-    const apiUrl = Api.personagem.readAll()
+    const apiUrl = Api.backstore.readAll()
 
     const response = await Api.buildApiGetRequest(apiUrl)
 

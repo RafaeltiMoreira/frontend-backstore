@@ -12,7 +12,7 @@ export default function Create() {
     const stock = {
       name: event.target.name.value,
       image: event.target.image.value,
-      quantity: parseInt(event.target.quantity.value, 10),
+      quantity: parseInt(event.target.quantity.value),
       price: parseFloat(event.target.price.value)
     }
 

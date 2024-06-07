@@ -14,6 +14,9 @@ export const Api = {
     create: function () {
       return this.endpoint() + '/'
     },
+    readById: function (id) {
+      return `${this.endpoint()}/${id}`;
+    },
     sale: function (id) {
       return `${this.endpoint()}/${id}/sale`;
     },
@@ -57,6 +60,16 @@ export const Api = {
       .catch(function (error) {
         console.error('Erro ao atualizar dados.' + url, error);
         toast.error('Erro ao atualizar dados.');
+      });
+  },
+
+  buildApiDeleteRequest: function (url) {
+    return fetch(url, {
+      method: 'DELETE'
+    })
+      .catch(function (error) {
+        console.error('Erro ao deletar dados.' + url, error);
+        toast.error('Erro ao deletar dados.');
       });
   }
 }
