@@ -14,9 +14,6 @@ export const Api = {
     create: function () {
       return this.endpoint() + '/'
     },
-    readById: function (id) {
-      return `${this.endpoint()}/${id}`;
-    },
     sale: function (id) {
       return `${this.endpoint()}/${id}/sale`;
     },
