@@ -10,6 +10,7 @@ export default function Header() {
           <nav>
             <Link to="/">Home</Link>
             <Link to="/create">Create</Link>
+            <Link to="/delete">Delete</Link>
           </nav>
         </header>
     )
