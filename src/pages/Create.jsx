@@ -16,7 +16,7 @@ export default function Create() {
       price: parseFloat(event.target.price.value)
     }
 
-    const apiUrl = Api.personagem.create()
+    const apiUrl = Api.backstore.create()
 
     const response = await Api.buildApiPostRequest(apiUrl, stock)
 

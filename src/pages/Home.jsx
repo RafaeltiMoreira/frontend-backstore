@@ -42,8 +42,8 @@ export default function Home() {
   return (
     <>
       <div className='cards'>
-        {store.map(function (stock, index) {
-          return <Card key={index} item={stock} onSale={() => handleSale(stock, 1)} />
+        {store.map(function (sales, index) {
+          return <Card key={index} item={sales} onSale={() => handleSale(sales, 1)} />
         })}
       </div>
     </>
