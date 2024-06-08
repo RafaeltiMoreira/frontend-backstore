@@ -12,15 +12,15 @@ export default function Remove() {
     const id = event.target.id.value;
 
     if (!id) {
-      toast.error("Por favor, forneça o ID do produto.");
+      toast.error("Insira o ID do produto.");
       return;
     }
 
-    const apiUrl = Api.backstore.delete()
+    const apiUrl = Api.backstore.delete(id)
 
     const response = await Api.buildApiDeleteRequest(apiUrl)
 
-    if (response.ok) {
+    if (response && response.ok) {
       toast.success("Produto removido com sucesso!")
       navigate('/')
     } else {

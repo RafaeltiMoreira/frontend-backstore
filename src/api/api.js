@@ -46,9 +46,9 @@ export const Api = {
       })
   },
 
-  buildApiPatchRequest: function (url, body) {
+  buildApiPutRequest: function (url, body) {
     return fetch(url, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json'
       },

@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Header from './components/Header/Header'
 import Create from './pages/Create'
 import Remove from './pages/Remove'
+import Update from './pages/Update'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/delete',
         element: <Remove />
+      },
+      {
+        path: '/update',
+        element: <Update />
       }
     ]
   }
