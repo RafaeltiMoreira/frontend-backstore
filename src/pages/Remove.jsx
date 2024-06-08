@@ -5,20 +5,20 @@ import { useNavigate } from "react-router-dom"
 
 export default function Remove() {
   const navigate = useNavigate()
-  
+
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const stock = {
-      name: event.target.name.value,
-      image: event.target.image.value,
-      quantity: parseInt(event.target.quantity.value),
-      price: parseFloat(event.target.price.value)
+    const id = event.target.id.value;
+
+    if (!id) {
+      toast.error("Por favor, forneça o ID do produto.");
+      return;
     }
 
     const apiUrl = Api.backstore.delete()
 
-    const response = await Api.buildApiPostRequest(apiUrl, stock)
+    const response = await Api.buildApiDeleteRequest(apiUrl)
 
     if (response.ok) {
       toast.success("Produto removido com sucesso!")
@@ -35,23 +35,8 @@ export default function Remove() {
       <div className="flex">
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Nome:</label>
-            <input type="text" id="name" name="name" placeholder="Insira o nome" required />
-          </div>
-
-          <div>
-            <label htmlFor="image">Imagem (URL):</label>
-            <input type="text" id="image" name="image" placeholder="Insira a URL da imagem" required />
-          </div>
-
-          <div>
-            <label htmlFor="quantity">Quantidade:</label>
-            <input type="number" id="quantity" name="quantity" placeholder="Insira a quantidade do produto" required />
-          </div>
-
-          <div>
-            <label htmlFor="price">Preço:</label>
-            <input type="number" step="0.01" id="price" name="price" placeholder="Insira o preço do produto" required />
+            <label htmlFor="id">ID:</label>
+            <input type="text" id="id" name="id" placeholder="Insira o ID" required />
           </div>
 
           <div className="btn">
