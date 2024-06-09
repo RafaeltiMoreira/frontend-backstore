@@ -16,12 +16,12 @@ export default function Header() {
 
       <nav className={menuOpen ? 'open' : ''}>
         <Link to="/">Home</Link>
-        <Link to="/create">Create</Link>
-        <Link to="/update">Update</Link>
-        <Link to="/delete">Delete</Link>
+        <Link to="/create" onClick={toggleMenu}>Create</Link>
+        <Link to="/update" onClick={toggleMenu}>Update</Link>
+        <Link to="/delete" onClick={toggleMenu}>Delete</Link>
       </nav>
 
-      <div className="hamburger" onClick={toggleMenu}>
+      <div className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
         <div className="line"></div>
         <div className="line"></div>
         <div className="line"></div>

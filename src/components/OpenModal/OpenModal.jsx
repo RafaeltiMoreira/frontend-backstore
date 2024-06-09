@@ -22,7 +22,7 @@ export default function OpenModal({ isOpen, onRequestClose, onConfirm, item }) {
       onRequestClose();
       setShowAnimation(false);
       navigate('/');
-    }, 1600);
+    }, 1800);
   };
 
   const incrementQuantity = () => {
