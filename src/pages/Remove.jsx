@@ -1,50 +1,63 @@
-import { toast } from "react-toastify"
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Api } from "../api/api"
-import { useNavigate } from "react-router-dom"
+import { Api } from '../api/api'
+import CardRemove from '../components/CardRemove/CardRemove'
 
 export default function Remove() {
-  const navigate = useNavigate()
+  const [products, setProducts] = useState([]);
 
-  async function handleSubmit(event) {
-    event.preventDefault()
+  async function fetchData() {
+    try {
+      const apiUrl = Api.backstore.readAll();
+      const response = await Api.buildApiGetRequest(apiUrl);
 
-    const id = event.target.id.value;
+      if (response.ok) {
+        const data = await response.json();
+        setProducts(data);
 
-    if (!id) {
-      toast.error("Insira o ID do produto.");
-      return;
-    }
-
-    const apiUrl = Api.backstore.delete(id)
-
-    const response = await Api.buildApiDeleteRequest(apiUrl)
-
-    if (response && response.ok) {
-      toast.success("Produto removido com sucesso!")
-      navigate('/')
-    } else {
-      const body = await response.json()
-      toast.error('Erro ao remover produto: ' + body.error)
+      } else {
+        const error = await response.json();
+        toast.error('Erro ao carregar produtos: ' + error.message);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+      toast.error('Erro ao carregar produtos. Verifique sua conexão de rede.');
     }
   }
 
-  return (
-    <div>
-      <h1>Remover produto</h1>
-      <div className="flex">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="id">ID:</label>
-            <input type="text" id="id" name="id" placeholder="Insira o ID" required />
-          </div>
+  async function handleRemove(id) {
+    
+    try {
+      const apiUrl = Api.backstore.delete(id);
+      const response = await Api.buildApiDeleteRequest(apiUrl, id);
 
-          <div className="btn">
-            <button type="submit">Remover</button>
-            <button type="reset">Reiniciar</button>
-          </div>
-        </form>
+      if (response.ok) {
+        const updatedProducts = products.filter((item) => item._id !== id);
+        setProducts(updatedProducts);
+        toast.success('Produto removido com sucesso!');
+      } else {
+        const error = await response.json();
+        toast.error('Erro ao remover produto: ' + error.message);
+      }
+    } catch (error) {
+      console.error('Erro ao remover produto:', error);
+      toast.error('Erro ao remover produto. Verifique sua conexão de rede.');
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <h1>Remover produto</h1>
+      <div className='cards'>
+        {products.map((product) => (
+          <CardRemove key={product._id} item={product} onRemove={() => handleRemove(product._id)} />
+        ))}
       </div>
-    </div>
-  )
+    </>
+  );
 }

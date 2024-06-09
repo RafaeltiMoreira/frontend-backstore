@@ -54,6 +54,15 @@ export const Api = {
       },
       body: JSON.stringify(body)
     })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(error => {
+            console.error('Erro ao atualizar dados:', error); // Log the error response
+            throw new Error(error.message);
+          });
+        }
+        return response;
+      })
       .catch(function (error) {
         console.error('Erro ao atualizar dados.' + url, error);
         toast.error('Erro ao atualizar dados.');
