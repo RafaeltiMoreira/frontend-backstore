@@ -12,8 +12,7 @@ export default function Card(props) {
       <p>Preço: {formatNumber(props.item.price)}</p>
       <button
         className='btn-sales'
-        onClick={props.item.onSale}
-        disabled={props.item.quantity === 0}
+        onClick={() => props.onClick(props.item)}
       >
         Comprar
       </button>
