@@ -1,25 +1,69 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ddd;
-    color: black;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: black;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .logo {
-    height: 60px;
+  height: 60px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
 }
 
 nav a {
-    margin: 0 10px;
-    color: black;
-    text-decoration: none;
-    font-family: Verdana, sans-serif;
-    font-weight: bold;
+  margin: 0 10px;
+  color: black;
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  font-weight: bold;
 }
 
 nav a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #ddd;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
