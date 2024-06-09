@@ -12,7 +12,7 @@ Este projeto consiste em uma aplicação FullStack para gerenciamento de invent�
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/RafaeltiMoreira/api-restful-backstore.git
+   git clone https://github.com/RafaeltiMoreira/frontend-backstore.git
    cd frontend
    npm install
    npm run dev
